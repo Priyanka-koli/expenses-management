@@ -44,7 +44,7 @@ const AddExpenses = () => {
     expense.expense_date.trim().length === 0 && setIsdateEntered(false);
 
     if (
-      expense.expense_title.trim().length ||
+      expense.expense_title.trim().length === 0 ||
       expense.expense_amount.trim().length === 0 ||
       expense.expense_date.trim().length === 0
     ) {

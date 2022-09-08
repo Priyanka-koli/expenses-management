@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
   "Sign Up",
 ]; */
 const Pages = [
-  { label: "Add Expenses", url: "/add-expense" },
-  { label: "All Expenses", url: "/all-expense" },
+  { label: "Add Expenses", url: "/add-expenses" },
+  { label: "All Expenses", url: "/all-expenses" },
   { label: "About Us", url: "/about" },
   { label: "Contact Us", url: "/contact" },
   { label: "Login", url: "/login" },
