@@ -16,8 +16,8 @@ import { useState } from "react";
 import HamBurger from "./HamBurger";
 
 const Pages = [
-  { label: "Add Expenses", url: "/add-expense" },
-  { label: "All Expenses", url: "/all-expense" },
+  { label: "Add Expenses", url: "/add-expenses" },
+  { label: "All Expenses", url: "/all-expenses" },
   { label: "About Us", url: "/about" },
   { label: "Contact Us", url: "/contact" },
 ];

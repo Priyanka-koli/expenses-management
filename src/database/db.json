@@ -1,0 +1,10 @@
+{
+  "expense": [
+    {
+      "id": 1,
+      "expense_title": "jknkk",
+      "expense_amount": "400",
+      "expense_date": "2022-09-03"
+    }
+  ]
+}
