@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Avatar,
-  TextField,
-  Grid,
-  Typography,
-  Paper,
-  Button,
-} from "@mui/material";
+import { TextField, Grid, Typography, Paper, Button } from "@mui/material";
 import { addExpenseToApi } from "../../../service/api";
 
 const INITAIL_VALUES = {
@@ -18,10 +11,23 @@ const INITAIL_VALUES = {
 };
 const AddExpenses = () => {
   const [expense, setExpense] = useState(INITAIL_VALUES);
+  const [isTitleEntered, setIsTitleEntered] = useState(true);
+  const [isAmountEntered, setIsAmountEntered] = useState(true);
+  const [isDateEntered, setIsdateEntered] = useState(true);
+
   const Navigate = useNavigate();
 
   /* function to handle text field change  */
   const onChangeHandler = (e) => {
+    if (e.target.name === "expense_title") {
+      setIsTitleEntered(true);
+    }
+    if (e.target.name === "expense_amount") {
+      setIsAmountEntered(true);
+    }
+    if (e.target.name === "expense_date") {
+      setIsdateEntered(true);
+    }
     setExpense({ ...expense, [e.target.name]: e.target.value });
   };
 
@@ -33,6 +39,21 @@ const AddExpenses = () => {
   /* function to handle actions after form submit  */
   const submitHandler = async (e) => {
     e.preventDefault();
+    expense.expense_title.trim().length === 0 && setIsTitleEntered(false);
+    expense.expense_amount.trim().length === 0 && setIsAmountEntered(false);
+    expense.expense_date.trim().length === 0 && setIsdateEntered(false);
+
+    if (
+      expense.expense_title.trim().length ||
+      expense.expense_amount.trim().length === 0 ||
+      expense.expense_date.trim().length === 0
+    ) {
+      return;
+    }
+    if (expense.expense_title === "") {
+      setIsTitleEntered(false);
+      return;
+    }
     await addExpenseToApi(expense);
     Navigate("/all-expenses");
   };
@@ -53,11 +74,16 @@ const AddExpenses = () => {
               id="expense-title"
               label="Expense Title"
               variant="filled"
-              helperText="Please enter expense title"
               margin="normal"
               onChange={onChangeHandler}
               name="expense_title"
               value={expense.expense_title}
+              error={!isTitleEntered}
+              helperText={
+                !isTitleEntered
+                  ? "Expense title is required"
+                  : "Enter expense title"
+              }
             />
             <TextField
               id="expense-amount"
@@ -68,11 +94,17 @@ const AddExpenses = () => {
               }}
               variant="filled"
               fullWidth
-              helperText="Please enter expense amount"
               margin="normal"
               onChange={onChangeHandler}
               name="expense_amount"
               value={expense.expense_amount}
+              maxlength="3"
+              error={!isAmountEntered}
+              helperText={
+                !isAmountEntered
+                  ? "Expense amount is required"
+                  : "Enter expense amount"
+              }
             />
             <TextField
               id="expense-date"
@@ -83,11 +115,16 @@ const AddExpenses = () => {
               }}
               variant="filled"
               fullWidth
-              helperText="Please enter expense date"
               margin="normal"
               onChange={onChangeHandler}
               name="expense_date"
               value={expense.expense_date}
+              error={!isDateEntered}
+              helperText={
+                !isDateEntered
+                  ? "Expense date is required"
+                  : "Enter expense date"
+              }
             />
             <Button variant="contained" type="submit" sx={{ color: "primary" }}>
               Submit
