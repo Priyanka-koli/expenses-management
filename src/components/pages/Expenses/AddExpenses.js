@@ -8,7 +8,6 @@ import {
   Paper,
   Button,
 } from "@mui/material";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { addExpenseToApi } from "../../../service/api";
 
 const INITAIL_VALUES = {
@@ -40,12 +39,9 @@ const AddExpenses = () => {
 
   return (
     <React.Fragment>
-      <Grid sx={{ align: "center" }}>
+      <Grid>
         <Paper sx={{ padding: "30px 20px", width: "50%", margin: "30px auto" }}>
           <Grid sx={{ align: "center" }}>
-            <Avatar sx={{ backgroundColor: "primary", align: "center" }}>
-              <CurrencyExchangeIcon sx={{ fontSize: "Medium" }} />
-            </Avatar>
             <Typography variant="h4"> Add Expenses</Typography>
             <Typography variant="caption">
               Please fill this form to add your expenses

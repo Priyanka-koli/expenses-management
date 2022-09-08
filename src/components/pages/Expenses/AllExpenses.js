@@ -13,8 +13,8 @@ import {
 
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { getExpenseFromApi } from "../../../service/api";
-import { Link } from "react-router-dom";
+import { getExpenseFromApi, deleteExpenseById } from "../../../service/api";
+import { useNavigate } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,7 +38,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function AllExpenses() {
   const [expenses, setExpenses] = useState([]);
-
+  const Navigate = useNavigate();
   /* calling getExpenseFromApi */
   const getAllExpense = async () => {
     let { data } = await getExpenseFromApi();
@@ -48,6 +48,15 @@ export default function AllExpenses() {
   useEffect(() => {
     getAllExpense();
   }, []);
+
+  const deleteExpenseHandler = async (id) => {
+    await deleteExpenseById(id);
+    getAllExpense();
+  };
+
+  const editExpenseHandler = (id) => {
+    Navigate(`/edit-expenses/${id}`);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -83,12 +92,14 @@ export default function AllExpenses() {
               <StyledTableCell align="center">
                 <ModeEditIcon
                   sx={{ fontsize: "Medium", color: "#06397" }}
-                  component={Link}
-                  to={`/edit-expenses/${expense.id}`}
+                  onClick={() => editExpenseHandler(expense.id)}
                 />
               </StyledTableCell>
               <StyledTableCell align="center">
-                <DeleteIcon sx={{ fontsize: "Medium", color: "#06397" }} />
+                <DeleteIcon
+                  sx={{ fontsize: "Medium", color: "#06397" }}
+                  onClick={() => deleteExpenseHandler(expense.id)}
+                />
               </StyledTableCell>
             </StyledTableRow>
           ))}
