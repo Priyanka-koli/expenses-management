@@ -26,6 +26,11 @@ const AddExpenses = () => {
     setExpense({ ...expense, [e.target.name]: e.target.value });
   };
 
+  /* function to handle reset click */
+  const resetHandler = (e) => {
+    setExpense(INITAIL_VALUES);
+  };
+
   /* function to handle actions after form submit  */
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -56,6 +61,7 @@ const AddExpenses = () => {
               margin="normal"
               onChange={onChangeHandler}
               name="expense_title"
+              value={expense.expense_title}
             />
             <TextField
               id="expense-amount"
@@ -70,6 +76,7 @@ const AddExpenses = () => {
               margin="normal"
               onChange={onChangeHandler}
               name="expense_amount"
+              value={expense.expense_amount}
             />
             <TextField
               id="expense-date"
@@ -84,9 +91,18 @@ const AddExpenses = () => {
               margin="normal"
               onChange={onChangeHandler}
               name="expense_date"
+              value={expense.expense_date}
             />
             <Button variant="contained" type="submit" sx={{ color: "primary" }}>
               Submit
+            </Button>
+            <Button
+              variant="contained"
+              onClick={resetHandler}
+              type="reset"
+              sx={{ color: "primary", marginLeft: "2rem" }}
+            >
+              Reset
             </Button>
           </form>
         </Paper>
