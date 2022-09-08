@@ -15,6 +15,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getExpenseFromApi, deleteExpenseById } from "../../../service/api";
 import { useNavigate } from "react-router-dom";
+import TotalExpense from "./TotalExpenses";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -58,53 +59,61 @@ export default function AllExpenses() {
     Navigate(`/edit-expenses/${id}`);
   };
 
+  //calculating total of expenses
+  const totalAmount = expenses.reduce((acc, amount) => {
+    return (acc += Number(amount["expense_amount"]));
+  }, 0);
+
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{ maxWidth: 900, margin: "5% auto" }}
-        aria-label="customized table"
-      >
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Id</StyledTableCell>
-            <StyledTableCell align="center">Title</StyledTableCell>
-            <StyledTableCell align="center">Amount($)</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Edit</StyledTableCell>
-            <StyledTableCell align="center">Delete</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {expenses.map((expense) => (
-            <StyledTableRow key={expense.name}>
-              <StyledTableCell component="th" scope="row">
-                {expense.id}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {expense.expense_title}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {expense.expense_amount}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                {expense.expense_date}
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <ModeEditIcon
-                  sx={{ fontsize: "Medium", color: "#06397" }}
-                  onClick={() => editExpenseHandler(expense.id)}
-                />
-              </StyledTableCell>
-              <StyledTableCell align="center">
-                <DeleteIcon
-                  sx={{ fontsize: "Medium", color: "#06397" }}
-                  onClick={() => deleteExpenseHandler(expense.id)}
-                />
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{ maxWidth: 900, margin: "5% auto" }}
+          aria-label="customized table"
+        >
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Id</StyledTableCell>
+              <StyledTableCell align="center">Title</StyledTableCell>
+              <StyledTableCell align="center">Amount($)</StyledTableCell>
+              <StyledTableCell align="center">Date</StyledTableCell>
+              <StyledTableCell align="center">Edit</StyledTableCell>
+              <StyledTableCell align="center">Delete</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {expenses.map((expense) => (
+              <StyledTableRow key={expense.name}>
+                <StyledTableCell component="th" scope="row">
+                  {expense.id}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {expense.expense_title}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {expense.expense_amount}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {expense.expense_date}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <ModeEditIcon
+                    sx={{ fontsize: "Medium", color: "#06397" }}
+                    onClick={() => editExpenseHandler(expense.id)}
+                  />
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <DeleteIcon
+                    sx={{ fontsize: "Medium", color: "#06397" }}
+                    onClick={() => deleteExpenseHandler(expense.id)}
+                  />
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {<TotalExpense expenseTotal={totalAmount}></TotalExpense>}
+    </>
   );
 }
