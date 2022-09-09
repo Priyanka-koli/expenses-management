@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { getExpenseFromApi, deleteExpenseById } from "../../../service/api";
 import { useNavigate } from "react-router-dom";
 import TotalExpense from "./TotalExpenses";
-
+import DialogExpenses from "./DialogExpenses";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#063970",
@@ -39,6 +39,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function AllExpenses() {
   const [expenses, setExpenses] = useState([]);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [expenseDetails , setExpenseDetails] = useState([]);
   const Navigate = useNavigate();
   /* calling getExpenseFromApi */
   const getAllExpense = async () => {
@@ -58,6 +60,11 @@ export default function AllExpenses() {
   const editExpenseHandler = (id) => {
     Navigate(`/edit-expenses/${id}`);
   };
+
+  const openDailogHandler = (expenseData) =>{
+    setOpenDialog(true);
+    setExpenseDetails(expenseData);
+  }
 
   //calculating total of expenses
   const totalAmount = expenses.reduce((acc, amount) => {
@@ -87,7 +94,10 @@ export default function AllExpenses() {
                 <StyledTableCell component="th" scope="row">
                   {expense.id}
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                <StyledTableCell
+                  align="center"
+                  onClick={() => openDailogHandler(expense)}
+                >
                   {expense.expense_title}
                 </StyledTableCell>
                 <StyledTableCell align="center">
@@ -114,6 +124,11 @@ export default function AllExpenses() {
         </Table>
       </TableContainer>
       {<TotalExpense expenseTotal={totalAmount}></TotalExpense>}
+      <DialogExpenses
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        data = {expenseDetails}
+      ></DialogExpenses>
     </>
   );
 }

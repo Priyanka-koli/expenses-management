@@ -26,10 +26,8 @@ const NavBar = () => {
   const [click, setClick] = useState(0);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
 
   const clickHandler = (e, value) => {
-    //console.log(value);
     setClick(value);
   };
   return (
