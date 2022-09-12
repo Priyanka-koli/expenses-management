@@ -4,6 +4,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import Button from "@mui/material/Button";
 
 const GenerateReports = (props) => {
+  //function to be triggered on Export Pdf button click
   const generatePdfHandler = (event) => {
     let docDefinition = {
       /* watermark: {
