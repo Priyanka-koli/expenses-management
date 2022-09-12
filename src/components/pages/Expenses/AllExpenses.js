@@ -147,6 +147,7 @@ export default function AllExpenses() {
                 <StyledTableCell scope="row">Entry</StyledTableCell>
                 <StyledTableCell align="center">
                   <TextField
+                    placeholder="Enter Expense Title"
                     type="text"
                     onChange={onChangeHandler}
                     name="expense_title"
@@ -155,6 +156,7 @@ export default function AllExpenses() {
                 </StyledTableCell>
                 <StyledTableCell align="center">
                   <TextField
+                    placeholder="Enter Expense Amount"
                     type="number"
                     onChange={onChangeHandler}
                     name="expense_amount"
@@ -173,7 +175,7 @@ export default function AllExpenses() {
                   <Button
                     variant="contained"
                     type="submit"
-                    sx={{ color: "primary" }}
+                    sx={{ color: "secondary" }}
                     onClick={addHandler}
                   >
                     <AddCircleIcon />
