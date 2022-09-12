@@ -18,27 +18,27 @@ const AddExpenses = () => {
   const Navigate = useNavigate();
 
   /* function to handle text field change  */
-  const onChangeHandler = (e) => {
-    if (e.target.name === "expense_title") {
+  const onChangeHandler = (event) => {
+    if (event.target.name === "expense_title") {
       setIsTitleEntered(true);
     }
-    if (e.target.name === "expense_amount") {
+    if (event.target.name === "expense_amount") {
       setIsAmountEntered(true);
     }
-    if (e.target.name === "expense_date") {
+    if (event.target.name === "expense_date") {
       setIsdateEntered(true);
     }
-    setExpense({ ...expense, [e.target.name]: e.target.value });
+    setExpense({ ...expense, [event.target.name]: event.target.value });
   };
 
   /* function to handle reset click */
-  const resetHandler = (e) => {
+  const resetHandler = (event) => {
     setExpense(INITAIL_VALUES);
   };
 
   /* function to handle actions after form submit  */
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const submitHandler = async (event) => {
+    event.preventDefault();
     expense.expense_title.trim().length === 0 && setIsTitleEntered(false);
     expense.expense_amount.trim().length === 0 && setIsAmountEntered(false);
     expense.expense_date.trim().length === 0 && setIsdateEntered(false);
@@ -98,7 +98,6 @@ const AddExpenses = () => {
               onChange={onChangeHandler}
               name="expense_amount"
               value={expense.expense_amount}
-              maxlength="3"
               error={!isAmountEntered}
               helperText={
                 !isAmountEntered
