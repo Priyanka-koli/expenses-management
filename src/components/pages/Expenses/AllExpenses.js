@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import TotalExpense from "./TotalExpenses";
 import DialogExpenses from "./DialogExpenses";
 import { addExpenseToApi } from "../../../service/api";
+import GenerateReports from "../Pdfs/GenerateReports";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,6 +55,7 @@ export default function AllExpenses() {
   const [expenses, setExpenses] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [expenseDetails, setExpenseDetails] = useState([]);
+  //for table field entries
   const [newExpenseEntry, setNewExpenseEntry] = useState(expenses);
 
   //for validation
@@ -62,6 +64,7 @@ export default function AllExpenses() {
   const [isDateEntered, setIsdateEntered] = useState(true);
 
   const Navigate = useNavigate();
+
   /* calling getExpenseFromApi */
   const getAllExpense = async () => {
     let { data } = await getExpenseFromApi();
@@ -72,15 +75,18 @@ export default function AllExpenses() {
     getAllExpense();
   }, []);
 
+  //for deleting table entry
   const deleteExpenseHandler = async (id) => {
     await deleteExpenseById(id);
     getAllExpense();
   };
 
+  //for editting table entry
   const editExpenseHandler = (id) => {
     Navigate(`/edit-expenses/${id}`);
   };
 
+  //for opening dialog box on respective entry
   const openDailogHandler = (expenseData) => {
     setOpenDialog(true);
     setExpenseDetails(expenseData);
@@ -123,11 +129,14 @@ export default function AllExpenses() {
     }
     await addExpenseToApi(newExpenseEntry);
     getAllExpense();
+    //after submitting setting input filed values to empty
+    setNewExpenseEntry(INITAIL_VALUES);
   };
 
   return (
     <>
       <Box>
+        <GenerateReports data={expenses} />
         <TableContainer component={Paper}>
           <Table
             sx={{ maxWidth: 900, margin: "5% auto" }}
@@ -152,6 +161,7 @@ export default function AllExpenses() {
                     onChange={onChangeHandler}
                     name="expense_title"
                     error={!isTitleEntered}
+                    value={newExpenseEntry.expense_title}
                   ></TextField>
                 </StyledTableCell>
                 <StyledTableCell align="center">
@@ -161,6 +171,7 @@ export default function AllExpenses() {
                     onChange={onChangeHandler}
                     name="expense_amount"
                     error={!isAmountEntered}
+                    value={newExpenseEntry.expense_amount}
                   ></TextField>
                 </StyledTableCell>
                 <StyledTableCell align="center">
@@ -169,6 +180,7 @@ export default function AllExpenses() {
                     onChange={onChangeHandler}
                     name="expense_date"
                     error={!isDateEntered}
+                    value={newExpenseEntry.expense_date}
                   ></TextField>
                 </StyledTableCell>
                 <StyledTableCell align="center">

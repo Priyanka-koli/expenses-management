@@ -3,8 +3,14 @@
     {
       "id": 1,
       "expense_title": "Shopping",
-      "expense_amount": "200",
-      "expense_date": "2022-09-24"
+      "expense_amount": "496",
+      "expense_date": "2022-09-30"
+    },
+    {
+      "id": 2,
+      "expense_title": "veg",
+      "expense_amount": "1999",
+      "expense_date": "2022-10-01"
     }
   ]
 }
