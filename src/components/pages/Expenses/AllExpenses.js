@@ -164,10 +164,7 @@ export default function AllExpenses() {
       <Box>
         <GenerateReports data={expenses} />
         <TableContainer component={Paper}>
-          <Table
-            sx={{ maxWidth: 900, margin: "5% auto" }}
-            aria-label="customized table"
-          >
+          <Table sx={{ maxWidth: 900, margin: "5% auto" }}>
             <TableHead>
               <TableRow>
                 <StyledTableCell>Id</StyledTableCell>
