@@ -16,12 +16,18 @@ import {
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { getExpenseFromApi, deleteExpenseById } from "../../../service/api";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import {
+  getExpenseFromApi,
+  deleteExpenseById,
+  addExpenseToApi,
+  editExpenseById,
+} from "../../../service/api";
 import { useNavigate } from "react-router-dom";
 import TotalExpense from "./TotalExpenses";
 import DialogExpenses from "./DialogExpenses";
-import { addExpenseToApi } from "../../../service/api";
 import GenerateReports from "../Pdfs/GenerateReports";
+//import EditExpenses from "./EditExpenses";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -57,12 +63,16 @@ export default function AllExpenses() {
   //for table field entries
   const [newExpenseEntry, setNewExpenseEntry] = useState(expenses);
 
+  const [edittedExpenses, setEdittedExpenses] = useState(INITAIL_VALUES);
+  const [isEditClicked, setIsEditClicked] = useState(false);
+  const [editRowId, setEditRowId] = useState(0);
+
   //for validation
   const [isTitleEntered, setIsTitleEntered] = useState(true);
   const [isAmountEntered, setIsAmountEntered] = useState(true);
   const [isDateEntered, setIsdateEntered] = useState(true);
 
-  const Navigate = useNavigate();
+  //const Navigate = useNavigate();
 
   /* calling getExpenseFromApi */
   const getAllExpense = async () => {
@@ -81,8 +91,25 @@ export default function AllExpenses() {
   };
 
   //for editting table entry
-  const editExpenseHandler = (id) => {
-    Navigate(`/edit-expenses/${id}`);
+  const editExpenseHandler = (expenseData) => {
+    setIsEditClicked(true);
+    setEditRowId(expenseData.id);
+    setEdittedExpenses(expenseData);
+    //Navigate(`/edit-expenses/${id}`);
+  };
+
+  const editInputChangeHandler = (event) => {
+    setEdittedExpenses({
+      ...edittedExpenses,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const saveExpenseHandler = async (id) => {
+    await editExpenseById(edittedExpenses, id);
+    setIsEditClicked(false);
+    getAllExpense();
+    setEdittedExpenses(INITAIL_VALUES);
   };
 
   //for opening dialog box on respective entry
@@ -194,7 +221,7 @@ export default function AllExpenses() {
                 </StyledTableCell>
               </StyledTableRow>
               {expenses.map((expense) => (
-                <StyledTableRow key={expense.name}>
+                <StyledTableRow key={expense.id}>
                   <StyledTableCell component="th" scope="row">
                     {expense.id}
                   </StyledTableCell>
@@ -202,27 +229,67 @@ export default function AllExpenses() {
                     align="center"
                     onClick={() => openDailogHandler(expense)}
                   >
-                    {expense.expense_title}
+                    {editRowId === expense.id && isEditClicked == true ? (
+                      <TextField
+                        input
+                        type="text"
+                        onChange={editInputChangeHandler}
+                        name="expense_title"
+                        value={edittedExpenses.expense_title}
+                      ></TextField>
+                    ) : (
+                      expense.expense_title
+                    )}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="center">
+                    {editRowId === expense.id && isEditClicked == true ? (
+                      <TextField
+                        input
+                        type="number"
+                        onChange={editInputChangeHandler}
+                        name="expense_amount"
+                        value={edittedExpenses.expense_amount}
+                      ></TextField>
+                    ) : (
+                      expense.expense_amount
+                    )}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {expense.expense_amount}
+                    {editRowId === expense.id && isEditClicked == true ? (
+                      <TextField
+                        input
+                        type="date"
+                        onChange={editInputChangeHandler}
+                        name="expense_date"
+                        value={edittedExpenses.expense_date}
+                      ></TextField>
+                    ) : (
+                      expense.expense_date
+                    )}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {expense.expense_date}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <ModeEditIcon
-                      sx={{ fontsize: "Medium", color: "#06397" }}
-                      onClick={() => editExpenseHandler(expense.id)}
-                    />
-                    <DeleteIcon
-                      sx={{
-                        fontsize: "Medium",
-                        color: "#06397",
-                        marginLeft: "2rem",
-                      }}
-                      onClick={() => deleteExpenseHandler(expense.id)}
-                    />
+                    {editRowId === expense.id && isEditClicked == true ? (
+                      <DoneOutlineIcon
+                        sx={{ fontsize: "Medium", color: "#06397" }}
+                        onClick={() => saveExpenseHandler(expense.id)}
+                      />
+                    ) : (
+                      <>
+                        <ModeEditIcon
+                          sx={{ fontsize: "Medium", color: "#06397" }}
+                          onClick={() => editExpenseHandler(expense)}
+                        />
+                        <DeleteIcon
+                          sx={{
+                            fontsize: "Medium",
+                            color: "#06397",
+                            marginLeft: "2rem",
+                          }}
+                          onClick={() => deleteExpenseHandler(expense.id)}
+                        />
+                      </>
+                    )}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
