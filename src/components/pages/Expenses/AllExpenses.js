@@ -27,6 +27,9 @@ import GenerateReports from "../Pdfs/GenerateReports";
 import {
   StyledTableCell,
   StyledTableRow,
+  StyledTable,
+  StyledDeleteIcon,
+  StyledModeEditIcon,
 } from "../../../styles/AllExpenseTable";
 //import EditExpenses from "./EditExpenses";
 
@@ -145,7 +148,7 @@ export default function AllExpenses() {
       <Box>
         <GenerateReports data={expenses} />
         <TableContainer component={Paper}>
-          <Table sx={{ maxWidth: 900, margin: "5% auto" }}>
+          <StyledTable>
             <TableHead>
               <TableRow>
                 <StyledTableCell>Id</StyledTableCell>
@@ -249,21 +252,15 @@ export default function AllExpenses() {
                   <StyledTableCell align="center">
                     {editRowId === expense.id && isEditClicked == true ? (
                       <DoneOutlineIcon
-                        sx={{ fontsize: "Medium", color: "#06397" }}
+                        sx={{ fontsize: "small", color: "#06397" }}
                         onClick={() => saveExpenseHandler(expense.id)}
                       />
                     ) : (
                       <>
-                        <ModeEditIcon
-                          sx={{ fontsize: "Medium", color: "#06397" }}
+                        <StyledModeEditIcon
                           onClick={() => editExpenseHandler(expense)}
                         />
-                        <DeleteIcon
-                          sx={{
-                            fontsize: "Medium",
-                            color: "#06397",
-                            marginLeft: "2rem",
-                          }}
+                        <StyledDeleteIcon
                           onClick={() => deleteExpenseHandler(expense.id)}
                         />
                       </>
@@ -272,7 +269,7 @@ export default function AllExpenses() {
                 </StyledTableRow>
               ))}
             </TableBody>
-          </Table>
+          </StyledTable>
         </TableContainer>
         {<TotalExpense expenseTotal={totalAmount}></TotalExpense>}
         <DialogExpenses
