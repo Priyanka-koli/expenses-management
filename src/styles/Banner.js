@@ -14,16 +14,19 @@ export const BannerContent = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "15rem",
   left: "28rem",
-  /*   [theme.breakpoints.between("sm", "xl")]: {
-    alignItems: "center",
+  [theme.breakpoints.between("md", "lg")]: {
     top: "9rem",
-    left: "9rem",
+    left: "16rem",
+  },
+  [theme.breakpoints.between("sm", "md")]: {
+    top: "9rem",
+    left: "10rem",
   },
   [theme.breakpoints.down("sm")]: {
     alignItems: "center",
-    top: "5rem",
-    left: "3.5rem",
-  }, */
+    top: "10rem",
+    left: "4rem",
+  },
 }));
 
 export const BannerTitle = styled(Typography)(({ theme }) => ({

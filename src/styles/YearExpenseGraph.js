@@ -1,9 +1,10 @@
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 export const GraphContainer = styled(Box)(({ theme }) => ({
-  width: "50%",
-  alignItems: "center",
-  [theme.breakpoints.down("sm")]: {
-    alignItems: "center",
+  width: "70%",
+  height: "100%",
+  margin: "0 auto",
+  [theme.breakpoints.down("md")]: {
+    width: "90%",
   },
 }));
