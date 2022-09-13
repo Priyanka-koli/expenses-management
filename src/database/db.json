@@ -8,9 +8,27 @@
     },
     {
       "id": 2,
-      "expense_title": "veg",
-      "expense_amount": "1999",
+      "expense_title": "Grocery",
+      "expense_amount": "2000",
       "expense_date": "2022-10-01"
+    },
+    {
+      "id": 4,
+      "expense_title": "Medicines",
+      "expense_amount": "2500",
+      "expense_date": "2020-08-01"
+    },
+    {
+      "id": 5,
+      "expense_title": "Books",
+      "expense_amount": "500",
+      "expense_date": "2019-05-01"
+    },
+    {
+      "expense_title": "Dance class",
+      "expense_amount": "3000",
+      "expense_date": "2022-04-22",
+      "id": 6
     }
   ]
 }
