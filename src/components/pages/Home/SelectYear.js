@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getExpenseFromApi } from "../../../service/api";
 import { Select, MenuItem, InputLabel, FormHelperText } from "@mui/material";
 import YearExpensesGrapgh from "./YearExpensesGraph";
-import { SelectFormControl, SelectDropDown } from "../../../styles/SelectYear";
+import { StyledFormControl, StyledSelect } from "../../../styles/SelectYear";
 
 const SelectYear = () => {
   const [expenses, setExpenses] = useState([]);
@@ -30,9 +30,9 @@ const SelectYear = () => {
   };
   return (
     <>
-      <SelectFormControl>
+      <StyledFormControl>
         <InputLabel>YEAR</InputLabel>
-        <SelectDropDown
+        <StyledSelect
           id="year-select"
           value={selectedYear}
           label="Select"
@@ -42,11 +42,11 @@ const SelectYear = () => {
           <MenuItem value="2020">2020</MenuItem>
           <MenuItem value="2021">2021</MenuItem>
           <MenuItem value="2022">2022</MenuItem>
-        </SelectDropDown>
+        </StyledSelect>
         <FormHelperText>
           Select year from dropdwon to view Barchart
         </FormHelperText>
-      </SelectFormControl>
+      </StyledFormControl>
       <YearExpensesGrapgh filteredData={filteredExpenses} />
     </>
   );

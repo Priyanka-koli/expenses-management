@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Grid, Typography, Paper, Button } from "@mui/material";
 import { addExpenseToApi } from "../../../service/api";
+import { StyledPaper } from "../../../styles/AddExpenses";
 
 const INITAIL_VALUES = {
   id: 0,
@@ -61,7 +62,7 @@ const AddExpenses = () => {
   return (
     <React.Fragment>
       <Grid>
-        <Paper sx={{ padding: "30px 20px", width: "50%", margin: "30px auto" }}>
+        <StyledPaper>
           <Grid sx={{ align: "center" }}>
             <Typography variant="h4"> Add Expenses</Typography>
             <Typography variant="caption">
@@ -137,7 +138,7 @@ const AddExpenses = () => {
               Reset
             </Button>
           </form>
-        </Paper>
+        </StyledPaper>
       </Grid>
     </React.Fragment>
   );

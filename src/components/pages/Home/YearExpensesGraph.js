@@ -1,7 +1,7 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
-import { GraphContainer } from "../../../styles/YearExpenseGraph";
+import { StyledBox } from "../../../styles/YearExpenseGraph";
 
 const YearExpensesGrapgh = (props) => {
   const monthArray = [
@@ -45,7 +45,7 @@ const YearExpensesGrapgh = (props) => {
   };
 
   return (
-    <GraphContainer>
+    <StyledBox>
       <Bar
         data={ChartData}
         option={{
@@ -76,7 +76,7 @@ const YearExpensesGrapgh = (props) => {
           },
         }}
       ></Bar>
-    </GraphContainer>
+    </StyledBox>
   );
 };
 
