@@ -10,7 +10,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-
+import Logout from "../Login/Logout";
 import PaidIcon from "@mui/icons-material/Paid";
 import { useState } from "react";
 import HamBurger from "./HamBurger";
@@ -76,22 +76,7 @@ const NavBar = () => {
                   );
                 })}
               </Tabs>
-              <Button
-                sx={{ marginLeft: "auto" }}
-                component={Link}
-                to="/login"
-                variant="contained"
-              >
-                Login
-              </Button>
-              <Button
-                sx={{ marginLeft: "20px" }}
-                component={Link}
-                to="/sign-up"
-                variant="contained"
-              >
-                Sign UP
-              </Button>
+              <Logout />
             </>
           )}
         </Toolbar>

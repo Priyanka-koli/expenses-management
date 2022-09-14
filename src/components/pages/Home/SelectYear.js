@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getExpenseFromApi } from "../../../service/api";
-import { Select, MenuItem, InputLabel, FormHelperText } from "@mui/material";
+import { MenuItem, InputLabel, FormHelperText } from "@mui/material";
 import YearExpensesGrapgh from "./YearExpensesGraph";
 import { StyledFormControl, StyledSelect } from "../../../styles/SelectYear";
 

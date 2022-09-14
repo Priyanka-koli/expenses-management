@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, Grid, Typography, Paper, Button } from "@mui/material";
+import { TextField, Grid, Typography, Button } from "@mui/material";
 import { addExpenseToApi } from "../../../service/api";
 import { StyledPaper } from "../../../styles/AddExpenses";
 

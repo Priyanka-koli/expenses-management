@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Table,
   TableBody,
   TableContainer,
   TableHead,
@@ -11,8 +10,6 @@ import {
   Button,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import {
   getExpenseFromApi,
@@ -20,7 +17,6 @@ import {
   addExpenseToApi,
   editExpenseById,
 } from "../../../service/api";
-import { useNavigate } from "react-router-dom";
 import TotalExpense from "./TotalExpenses";
 import DialogExpenses from "./DialogExpenses";
 import GenerateReports from "../Pdfs/GenerateReports";
@@ -210,7 +206,7 @@ export default function AllExpenses() {
                     align="center"
                     onClick={() => openDailogHandler(expense)}
                   >
-                    {editRowId === expense.id && isEditClicked == true ? (
+                    {editRowId === expense.id && isEditClicked === true ? (
                       <TextField
                         input
                         type="text"
@@ -224,7 +220,7 @@ export default function AllExpenses() {
                   </StyledTableCell>
 
                   <StyledTableCell align="center">
-                    {editRowId === expense.id && isEditClicked == true ? (
+                    {editRowId === expense.id && isEditClicked === true ? (
                       <TextField
                         input
                         type="number"
@@ -250,7 +246,7 @@ export default function AllExpenses() {
                     )}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {editRowId === expense.id && isEditClicked == true ? (
+                    {editRowId === expense.id && isEditClicked === true ? (
                       <DoneOutlineIcon
                         sx={{ fontsize: "small", color: "#06397" }}
                         onClick={() => saveExpenseHandler(expense.id)}
