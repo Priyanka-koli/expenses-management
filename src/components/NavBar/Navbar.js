@@ -6,7 +6,6 @@ import {
   Toolbar,
   Tabs,
   Tab,
-  Button,
   useMediaQuery,
   useTheme,
 } from "@mui/material";

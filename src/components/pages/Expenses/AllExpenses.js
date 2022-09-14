@@ -233,7 +233,7 @@ export default function AllExpenses() {
                     )}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {editRowId === expense.id && isEditClicked == true ? (
+                    {editRowId === expense.id && isEditClicked === true ? (
                       <TextField
                         input
                         type="date"

@@ -9,7 +9,6 @@ import AllExpenses from "./components/pages/Expenses/AllExpenses";
 import EditExpenses from "./components/pages/Expenses/EditExpenses";
 import SignUp from "./components/Login/SignUp";
 import Login from "./components/Login/Login";
-import Logout from "./components/Login/Logout";
 import React, { useEffect, useState } from "react";
 import LoggedInContext from "./components/Login/login-context";
 

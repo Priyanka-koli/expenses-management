@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Typography, Box, TextField, Button, Grid } from "@mui/material";
+import { Typography, TextField, Button, Grid } from "@mui/material";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import LoggedInContext from "./login-context";
 import { StyledPaper, StyledAvatar } from "../../styles/Login";
@@ -19,8 +19,8 @@ const Login = () => {
     !enteredCredential.password && setIsPasswordEntered(false);
 
     if (
-      enteredCredential.email == "admin@gmail.com" &&
-      enteredCredential.password == "admin@123"
+      enteredCredential.email === "admin@gmail.com" &&
+      enteredCredential.password === "admin@123"
     ) {
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "1");
