@@ -15,6 +15,7 @@ import { useState } from "react";
 import HamBurger from "./HamBurger";
 
 const Pages = [
+  { label: "Home", url: "/" },
   { label: "Add Expenses", url: "/add-expenses" },
   { label: "All Expenses", url: "/all-expenses" },
   { label: "About Us", url: "/about" },
