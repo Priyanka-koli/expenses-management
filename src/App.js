@@ -2,15 +2,15 @@ import "./App.css";
 import Home from "./components/pages/Home/Home";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
-import Navbar from "./components/NavBar/Navbar";
+import Navbar from "./components/pages/NavBar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddExpenses from "./components/pages/Expenses/AddExpenses";
 import AllExpenses from "./components/pages/Expenses/AllExpenses";
 import EditExpenses from "./components/pages/Expenses/EditExpenses";
-import SignUp from "./components/Login/SignUp";
-import Login from "./components/Login/Login";
+import SignUp from "./components/pages/Login/SignUp";
+import Login from "./components/pages/Login/Login";
 import React, { useEffect, useState } from "react";
-import LoggedInContext from "./components/Login/login-context";
+import LoggedInContext from "./components/pages/Login/login-context";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

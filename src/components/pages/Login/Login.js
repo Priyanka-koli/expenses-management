@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Typography, TextField, Button, Grid } from "@mui/material";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import LoggedInContext from "./login-context";
-import { StyledPaper, StyledAvatar } from "../../styles/Login";
+import { StyledPaper, StyledAvatar } from "../../../styles/Login";
 
 const INITAIL_VALUES = [{ email: "" }, { password: "" }];
 
