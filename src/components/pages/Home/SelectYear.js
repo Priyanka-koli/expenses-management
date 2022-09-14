@@ -25,8 +25,8 @@ const SelectYear = () => {
   });
 
   //function to handle onChange event on year select dropsown
-  const onSelectHandler = (e) => {
-    setSelectedYear(e.target.value);
+  const onSelectHandler = (event) => {
+    setSelectedYear(event.target.value);
   };
   return (
     <>

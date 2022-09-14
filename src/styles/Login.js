@@ -3,7 +3,7 @@ import { Paper, Avatar } from "@mui/material";
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: "30px 10px",
   width: "50%",
-  margin: "20px auto",
+  margin: "auto auto",
   [theme.breakpoints.down("md")]: {
     width: "70%",
   },

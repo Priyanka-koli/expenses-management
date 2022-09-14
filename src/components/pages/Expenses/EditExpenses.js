@@ -31,8 +31,8 @@ const EditExpenses = () => {
     getExpenseById();
   }, []);
 
-  const onChangeHandler = (e) => {
-    setExpense({ ...expense, [e.target.name]: e.target.value });
+  const onChangeHandler = (event) => {
+    setExpense({ ...expense, [event.target.name]: event.target.value });
   };
 
   const submitHandler = async (e) => {
