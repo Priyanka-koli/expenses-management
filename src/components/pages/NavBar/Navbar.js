@@ -18,6 +18,7 @@ const Pages = [
   { label: "Home", url: "/" },
   { label: "Add Expenses", url: "/add-expenses" },
   { label: "All Expenses", url: "/all-expenses" },
+  { label: "Yearly Report", url: "/yearly-report" },
   { label: "About Us", url: "/about" },
   { label: "Contact Us", url: "/contact" },
 ];

@@ -23,6 +23,7 @@ const Pages = [
   { label: "All Expenses", url: "/all-expenses" },
   { label: "About Us", url: "/about" },
   { label: "Contact Us", url: "/contact" },
+  { label: "Yearly Report", url: "/yearly-report" },
   { label: "Login", url: "/login" },
   { label: "Sign Up", url: "/signup" },
 ];

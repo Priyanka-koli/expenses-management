@@ -11,6 +11,7 @@ import SignUp from "./components/pages/Login/SignUp";
 import Login from "./components/pages/Login/Login";
 import React, { useEffect, useState } from "react";
 import LoggedInContext from "./components/pages/Login/login-context";
+import YearlyReport from "./components/pages/YearlyReport/YearlyReport";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,6 +51,12 @@ function App() {
                     exact
                     path="/all-expenses"
                     element={<AllExpenses />}
+                  ></Route>
+
+                  <Route
+                    exact
+                    path="/yearly-report"
+                    element={<YearlyReport />}
                   ></Route>
                   <Route exact path="/sign-up" element={<SignUp />}></Route>
                 </Routes>

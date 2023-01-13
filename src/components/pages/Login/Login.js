@@ -4,6 +4,7 @@ import PersonPinIcon from "@mui/icons-material/PersonPin";
 import LoggedInContext from "./login-context";
 import { StyledPaper, StyledAvatar } from "../../../styles/Login";
 import imageUrl from "../../../assets/login-1.jpg";
+import { BrowserRouter as Link } from "react-router-dom";
 
 const INITAIL_VALUES = [{ email: "" }, { password: "" }];
 
@@ -121,6 +122,8 @@ const Login = () => {
               Login
             </Button>
           </form>
+          <Typography variant="h6">Need an account ?</Typography>
+          <Link to={`/sign-up`}>Sign up</Link>
         </StyledPaper>
       </Box>
     </React.Fragment>
